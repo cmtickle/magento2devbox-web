@@ -49,8 +49,8 @@ services:
           - MAGENTO_ADMIN_USER=admin
           - MAGENTO_ADMIN_PASSWORD=admin123
         ports:
-          - "80"
-          - "22"
+          - "80:80"
+          - "22:2222"
 
     db:
         container_name: magento2devbox_db_d5983e9313d9639b0b41d7e6b67443f8
