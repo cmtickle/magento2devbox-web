@@ -70,3 +70,19 @@ services:
         restart: always
         image: redis:3.0.7
 
+    varnish:
+        container_name: magento2devbox_varnish_d01b2d9eeb2ef0c17b8eb7d219891ea5
+        restart: always
+        depends_on:
+          - "web"
+        image: magento/magento2devbox-varnish:latest
+        ports:
+          - "6081"
+
+    elasticsearch:
+        container_name: magento2devbox_elastic_d01b2d9eeb2ef0c17b8eb7d219891ea5
+        restart: always
+        image: elasticsearch:2
+        ports:
+          - "9200"
+
