@@ -29,7 +29,7 @@ services:
           - MAGENTO_PRIVATE_KEY=
           - MAGENTO_USE_SOURCES_IN_HOST=1
           - CREATE_SYMLINK_EE=0
-          - HOST_CE_PATH=/Users/colintickle/Development/RibbleCycles
+          - HOST_CE_PATH=/Users/colintickle/Development/RibbleCycles  # THIS NEEDS TO BE EDITED TO CORRECT LOCAL PATH
           - EE_DIRNAME=magento2ee
           - MAGENTO_DOWNLOAD_SOURCES_COMPOSER=0
           - MAGENTO_EDITION=
@@ -48,9 +48,13 @@ services:
           - MAGENTO_BACKEND_PATH=admin
           - MAGENTO_ADMIN_USER=admin
           - MAGENTO_ADMIN_PASSWORD=admin123
+          - PHP_XDEBUG_ENABLED=1
+          - XDEBUG_CONFIG="remote_host=10.254.254.254"
+          - PHPSTORM_CONFIG="serverName=docker"
         ports:
           - "80:80"
           - "22:2222"
+          - "9000"
 
     db:
         container_name: magento2devbox_db_d5983e9313d9639b0b41d7e6b67443f8
