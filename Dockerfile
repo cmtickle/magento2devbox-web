@@ -3,6 +3,8 @@ MAINTAINER "Magento"
 
 ENV PHP_EXTRA_CONFIGURE_ARGS="--enable-fpm --with-fpm-user=magento2 --with-fpm-group=magento2"
 
+ADD ./Unison-OS-X-2.48.15.zip /tmp/unison-mac-osx.zip
+
 RUN apt-get update && apt-get install -y \
     apt-utils \
     sudo \
@@ -38,7 +40,7 @@ RUN apt-get update && apt-get install -y \
     && echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_port=9000" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_connect_back=0" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo "xdebug.remote_host=127.0.0.1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && echo "xdebug.remote_host=10.254.254.254" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.idekey=PHPSTORM" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.max_nesting_level=1000" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && chmod 666 /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
@@ -106,9 +108,8 @@ RUN mkdir /windows \
 
 RUN mkdir /mac-osx \
  && cd /mac-osx \
- && curl -L -o unison-mac-osx.zip http://unison-binaries.inria.fr/files/Unison-OS-X-2.48.15.zip \
- && unzip unison-mac-osx.zip \
- && rm unison-mac-osx.zip \
+ && unzip /tmp/unison-mac-osx.zip \
+ && rm /tmp/unison-mac-osx.zip \
  && chown -R magento2:magento2 .
 
 # Initial scripts

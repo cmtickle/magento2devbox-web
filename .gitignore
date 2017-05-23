@@ -2,3 +2,4 @@
 build-m1/shared
 scripts/vendor
 docker-compose.yml
+.DS_Store
