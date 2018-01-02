@@ -60,7 +60,7 @@ class MagentoOneInstall extends AbstractCommand
             [
                 'magentoone:download',
                 'magentoone:setup',
-                //'magento:setup:varnish',
+                //'magentoone:setup:varnish',
                 //'magento:setup:redis',
                 //'magento:setup:elasticsearch',
                 //'magento:setup:integration-tests',

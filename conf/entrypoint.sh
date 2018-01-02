@@ -21,7 +21,7 @@ then
         then
             echo "[IN PROGRESS] Sync Started." > /var/www/magento2/status.html
             sed -i 's/^\(\s*DirectoryIndex\s*\).*$/\1status.html/' /home/magento2/magento2/.htaccess
-            cp /home/magento2/magento2/.htacces /var/www/magento2/
+            cp /home/magento2/magento2/.htaccess /var/www/magento2/
             chown magento2:magento2 /var/www/magento2/.htaccess
             service apache2 start
 
@@ -45,8 +45,6 @@ then
             echo "[IN PROGRESS] Unison sync started" > /var/www/magento2/status.html
 
             run_unison
-
-            chmod +x /var/www/magento2/bin/magento
 
             echo "[DONE] Sync Finished" > /var/www/magento2/status.html
             sed -i 's/^\(\s*DirectoryIndex\s*\).*$/\1index.php/' /home/magento2/magento2/.htaccess

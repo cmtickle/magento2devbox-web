@@ -67,6 +67,15 @@ RUN apt-get update && apt-get install -y \
 # PHP config
 ADD conf/php.ini /usr/local/etc/php
 
+# Blackfire
+RUN apt-get install -y wget && \
+    wget -O - https://packagecloud.io/gpg.key | apt-key add - && \
+    echo "deb http://packages.blackfire.io/debian any main" | tee /etc/apt/sources.list.d/blackfire.list && \
+    apt-get update && apt-get install -y \
+        apt-utils \
+        blackfire-agent \
+        blackfire-php
+
 # SSH config
 COPY conf/sshd_config /etc/ssh/sshd_config
 RUN chown magento2:magento2 /etc/ssh/ssh_config
@@ -119,11 +128,9 @@ RUN sed -i 's/^/;/' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && sed -i 's/^;;*//' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 RUN chown -R magento2:magento2 /home/magento2 && \
-    chown -R magento2:magento2 /var/www/magento2 && \
-    chmod 755 /home/magento2/scripts/bin/magento-cloud-login
+    chown -R magento2:magento2 /var/www/magento2
 
-# Delete user password to connect with ssh with empty password
-RUN passwd magento2 -d
+RUN echo "magento2:magento2" | chpasswd
 
 EXPOSE 80 22 5000 44100
 WORKDIR /home/magento2

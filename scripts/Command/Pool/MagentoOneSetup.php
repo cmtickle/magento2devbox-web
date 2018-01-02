@@ -65,7 +65,7 @@ class MagentoOneSetup extends AbstractCommand
             '--admin_lastname "User" '.
             '--admin_email "user@example.com" '.
             '--admin_username "%s" '.
-            '--admin_password "%s"'.
+            '--admin_password "%s" '.
             '--admin_frontname "%s"',
             $magentoPath,
             $magentoHost,
